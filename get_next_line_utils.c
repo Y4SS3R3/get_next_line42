@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 15:10:47 by ymassiou          #+#    #+#             */
+/*   Updated: 2023/12/04 15:11:15 by ymassiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -26,6 +38,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	free(s1);
 	return (str);
 }
+
 char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
@@ -64,6 +77,7 @@ char	*ft_strdup(const char *s1)
 	tmp[i] = 0;
 	return (tmp);
 }
+
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	size_t	i;
@@ -83,12 +97,15 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	result[len] = 0;
 	return (result);
 }
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i])
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }
