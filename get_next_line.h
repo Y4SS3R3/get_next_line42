@@ -6,13 +6,12 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 01:39:05 by ymassiou          #+#    #+#             */
-/*   Updated: 2023/12/03 21:47:02 by ymassiou         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:32:39 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# include <stdio.h>/*****************/
 # include <stdlib.h>
 # include <limits.h>
 # include <fcntl.h>
