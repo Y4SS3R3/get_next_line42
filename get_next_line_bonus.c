@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:14:18 by ymassiou          #+#    #+#             */
-/*   Updated: 2023/12/04 15:19:27 by ymassiou         ###   ########.fr       */
+/*   Updated: 2023/12/06 22:42:34 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*set_line(char *save)
 	char	*result;
 
 	i = 0;
-	if (!save)
+	if (save == NULL)
 		return (NULL);
 	while (save[i] && save[i] != '\n')
 		i++;
@@ -34,7 +34,7 @@ static char	*prepare_next(char *save)
 	char	*result;
 
 	i = 0;
-	if (!save)
+	if (save == NULL)
 		return (NULL);
 	while (save[i] && save[i] != '\n')
 		i++;
@@ -48,6 +48,7 @@ static char	*prepare_next(char *save)
 static char	*fill_the_line(char *save, char *buffer, int fd)
 {
 	ssize_t	rbytes;
+	char	*tmp;
 
 	rbytes = 1;
 	while (!ft_strchr(save, '\n') && rbytes)
@@ -60,7 +61,9 @@ static char	*fill_the_line(char *save, char *buffer, int fd)
 			return (NULL);
 		}
 		buffer[rbytes] = '\0';
+		tmp = save;
 		save = ft_strjoin(save, buffer);
+		free(tmp);
 	}
 	free(buffer);
 	if (save && save[0] == '\0')
@@ -87,16 +90,3 @@ char	*get_next_line(int fd)
 	save[fd] = prepare_next(save[fd]);
 	return (line);
 }
-// int main()
-// {
-// 	int fd = open("hh1.txt", O_RDONLY);
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// 	printf("%s",get_next_line(fd));
-// }

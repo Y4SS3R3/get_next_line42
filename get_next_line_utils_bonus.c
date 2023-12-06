@@ -6,7 +6,7 @@
 /*   By: ymassiou <ymassiou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:17:50 by ymassiou          #+#    #+#             */
-/*   Updated: 2023/12/04 15:18:29 by ymassiou         ###   ########.fr       */
+/*   Updated: 2023/12/06 22:43:52 by ymassiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,46 +35,39 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j] != '\0')
 		str[i++] = s2[j++];
 	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	free(s1);
 	return (str);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *haystack, int needle)
 {
 	size_t	i;
 
 	i = 0;
-	if (s == NULL)
+	if (haystack == NULL)
 		return (NULL);
-	while (s[i])
+	while (haystack[i])
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+		if (haystack[i] == (char)needle)
+			return ((char *)&haystack[i]);
 		i++;
 	}
-	if (s[i] == (char)c)
-		return ((char *)&s[i]);
+	if (haystack[i] == (char)needle)
+		return ((char *)&haystack[i]);
 	return (NULL);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *str)
 {
-	size_t	size1;
 	size_t	i;
 	char	*tmp;
 
-	tmp = NULL;
-	i = 0;
-	size1 = ft_strlen(s1) + 1;
-	tmp = (char *)malloc(size1);
+	i = -1;
+	tmp = (char *)malloc(ft_strlen(str) + 1);
 	if (tmp == NULL)
 		return (NULL);
-	while (s1[i])
-	{
-		tmp[i] = s1[i];
-		i++;
-	}
-	tmp[i] = 0;
+	while (str[++i])
+		tmp[i] = str[i];
+	tmp[i] = '\0';
 	return (tmp);
 }
 
@@ -85,6 +78,10 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 
 	if (s == NULL)
 		return (NULL);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(&s[start]))
+		len = ft_strlen(&s[start]);
 	i = 0;
 	result = (char *)malloc(len + 1);
 	if (result == NULL)
@@ -94,7 +91,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		result[i] = s[start + i];
 		i++;
 	}
-	result[len] = 0;
+	result[len] = '\0';
 	return (result);
 }
 
@@ -103,7 +100,7 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	if (!s)
+	if (s == NULL)
 		return (0);
 	while (s[i] != '\0')
 		i++;
